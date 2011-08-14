@@ -8,6 +8,9 @@ class Movie {
   byte[] image = null
   Integer year = null
 
+  Date dateCreated
+  Date lastUpdated
+
   static mapping = {
     quote column:'text'
   }

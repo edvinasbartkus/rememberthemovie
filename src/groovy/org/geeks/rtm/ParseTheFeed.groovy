@@ -29,10 +29,16 @@ class ParseTheFeed {
 
     posts[1..-1].each {
       def object = [:]
-      object.img   = it.img.@src
-      object.quote = it.div[1].p[0].i
-      object.link  = it.div[1].p[1].a.@href
-      object.title = it.div[1].p[1].a.text()
+      object.img   = it.img.@src.toString()
+
+      if(it.div[1].p[1]) {
+        object.quote = it.div[1].p[0].i.text()
+        object.link  = it.div[1].p[1].a.@href.toString()
+        object.title = it.div[1].p[1].a.text()
+      } else {
+        object.link  = it.div[1].p[0].a.@href.toString()
+        object.title = it.div[1].p[0].a.text()
+      }
 
       objects << object
     }
